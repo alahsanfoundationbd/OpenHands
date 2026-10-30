@@ -20,9 +20,11 @@
 # CI passes these via --build-arg; for local builds use:
 #   node scripts/docker-build.mjs          (recommended, reads JSON for you)
 #   docker build --build-arg AGENT_SERVER_IMAGE=... --build-arg AUTOMATION_VERSION=... -f docker/Dockerfile .
-ARG AGENT_SERVER_IMAGE
-ARG AGENT_SERVER_VERSION
-ARG AUTOMATION_VERSION
+# Keep these defaults in sync with config/defaults.json. Render Blueprint builds do not
+# provide Docker build args, while CI/local builds can still override them.
+ARG AGENT_SERVER_IMAGE=ghcr.io/openhands/agent-server:1.59.0-python
+ARG AGENT_SERVER_VERSION=1.59.0
+ARG AUTOMATION_VERSION=1.26.1
 
 # ── Stage 1: Build frontend ──────────────────────────────────────────────────
 FROM node:24-slim AS frontend-build
