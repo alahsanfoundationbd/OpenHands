@@ -1,0 +1,15 @@
+# Render Blueprint for the all-in-one Agent Canvas Docker image.
+# Set LOCAL_BACKEND_API_KEY in the Render dashboard when prompted. Do not embed it here.
+services:
+  - type: web
+    name: openhands-agent-canvas
+    runtime: docker
+    plan: free
+    dockerfilePath: ./docker/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: "10000"
+      - key: LOCAL_BACKEND_API_KEY
+        sync: false
